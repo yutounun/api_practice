@@ -5,8 +5,10 @@ from .models import Members
 
 class MemberSerializer(serializers.ModelSerializer):
     class Meta:
+        # 対象のモデルを指定
         model = Members
-        fields = ('id', 'gender', 'username','age','introduction', 'job')
+        # 対象のフィールドを指定
+        fields = ['__all__']
 
 # requestのバリデーションを行う 
 class SpecificMemberRequestSerializer(serializers.Serializer):
