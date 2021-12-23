@@ -1,7 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from .views import *
+from django.db import router
+from rest_framework import routers
+from tinder import views
 
-urlpatterns = [
-  path('member/', MemberViewSet.as_view({'get': 'list'}), name='get_all'),
-  path('member/<str:member_id>/', SpecificMemberAPIView.as_view(), name='get_all'),
-]
+router = routers.SimpleRouter()
+# 全てのHTTPメソッドに対応
+router.register(r'member', MemberViewSet)
+urlpatterns = router.urls
