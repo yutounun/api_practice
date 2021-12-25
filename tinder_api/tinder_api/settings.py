@@ -55,6 +55,22 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'tinder_api.urls'
 
+# 特にAPIによってスロットリング回数を変更する必要も今回はないため
+# 非認証ユーザー10回/日、認証ユーザー50回/日とする
+REST_FRAMEWORK = {
+    # throttlingでユーザーによってAPIにアクセスする回数を制限する
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        # Unauthenticated users
+        'anon': '10/day',
+        # Authenticated users
+        'user': '50/day'
+    }
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
