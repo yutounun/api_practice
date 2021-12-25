@@ -3,6 +3,7 @@ from django.shortcuts import render
 from .models import *
 from rest_framework import views, status
 import django_filters
+from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework import viewsets, filters
 # @actionを利用するために必要
@@ -16,15 +17,17 @@ from .serializer import MemberSerializer, JobSerializer
 class MemberViewSet(viewsets.ModelViewSet):
     queryset = Members.objects.all()
     serializer_class = MemberSerializer
-
-    # getでpk有りの詳細情報を取得する際は下記実行される
-    # 下記実行の場合はurlにメソッド名を追加
+    
+    # getメソッドでIDが存在しないときはNotFoundエラーを発生させる
     @action(methods=['get'], detail=True)
-    def attach_san_to_name(self, request, pk=None):
+    def error_handling(self, request, pk=None):
         # Memberの指定したidのレコードを取得
-        member = self.get_object()
-        # memberの名前+さんをrespond
-        return Response('{member.username}さん'.format(member=member))
+        try:
+            obj = self.get_object()
+            serializer = self.get_serializer(obj)
+            return Response(serializer.data)
+        except:
+            raise NotFound
 
 class JobViewSet(viewsets.ModelViewSet):
     queryset = Jobs.objects.all()
