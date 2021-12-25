@@ -7,4 +7,6 @@ from tinder import views
 router = routers.SimpleRouter()
 # 全てのHTTPメソッドに対応
 router.register(r'member', MemberViewSet)
+router.register(r'job', JobViewSet)
+
 urlpatterns = router.urls

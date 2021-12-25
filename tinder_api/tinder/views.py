@@ -9,7 +9,7 @@ from rest_framework import viewsets, filters
 from rest_framework.decorators import action
 
 from .models import Members
-from .serializer import MemberSerializer
+from .serializer import MemberSerializer, JobSerializer
 
 # 全てのHTTPメソッドに対応
 # 一番シンプルで早く、個人開発向のModelViewSetで実装してみる
@@ -25,3 +25,7 @@ class MemberViewSet(viewsets.ModelViewSet):
         member = self.get_object()
         # memberの名前+さんをrespond
         return Response('{member.username}さん'.format(member=member))
+
+class JobViewSet(viewsets.ModelViewSet):
+    queryset = Jobs.objects.all()
+    serializer_class = JobSerializer
