@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -146,3 +147,39 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'formatters': { # 出力フォーマットを文字列形式で指定する
+        'all': {    # 出力フォーマットに'all'という名前をつける
+            'format': '\t'.join([
+                "[%(levelname)s]",
+                "asctime:%(asctime)s",
+                "module:%(module)s",
+                "message:%(message)s",
+                "process:%(process)d",
+                "thread:%(thread)d",
+            ])
+        },
+    },
+    'handlers': {  # ファイルへの出力設定
+        'file': {  # どこに出すかの設定に名前をつける 'file'という名前をつけている
+            'level': 'DEBUG',  # DEBUG以上のログを取り扱うという意味
+            'class': 'logging.FileHandler',  # ログを出力するためのあらかじめ存在するクラスを指定
+            'filename': os.path.join(BASE_DIR, 'django.log'),  # どのファイルパスに出力するか
+            'formatter': 'all',  # どの出力フォーマットで出すかを名前で指定
+        },
+        'console': { # consoleへの出力設定
+            'level': 'DEBUG',
+            # こちらは標準出力に出してくれるクラスを指定
+            'class': 'logging.StreamHandler', 
+            'formatter': 'all'
+        },
+    },
+    'loggers': {  # どんなloggerがあるかを設定する
+        'command': {  # commandという名前のloggerを定義
+            'handlers': ['file', 'console'],  # 先述のfile, consoleの設定で出力
+            'level': 'DEBUG',
+        },
+    },
+}
