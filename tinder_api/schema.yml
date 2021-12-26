@@ -1,0 +1,373 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/v1/member/:
+    get:
+      operationId: listMembers
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Member'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createMembers
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Member'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Member'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Member'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+          description: ''
+      tags:
+      - api
+  /api/v1/member/{id}/:
+    get:
+      operationId: retrieveMembers
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A UUID string identifying this members.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateMembers
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A UUID string identifying this members.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Member'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Member'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Member'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateMembers
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A UUID string identifying this members.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Member'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Member'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Member'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyMembers
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A UUID string identifying this members.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+  /api/v1/member/{id}/error_handling/:
+    get:
+      operationId: errorHandlingMembers
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A UUID string identifying this members.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+          description: ''
+      tags:
+      - api
+  /api/v1/job/:
+    get:
+      operationId: listJobs
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Job'
+          description: ''
+      tags:
+      - api
+    post:
+      operationId: createJobs
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Job'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+          description: ''
+      tags:
+      - api
+  /api/v1/job/{id}/:
+    get:
+      operationId: retrieveJobs
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this jobs.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+          description: ''
+      tags:
+      - api
+    put:
+      operationId: updateJobs
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this jobs.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Job'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+          description: ''
+      tags:
+      - api
+    patch:
+      operationId: partialUpdateJobs
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this jobs.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Job'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Job'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Job'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+          description: ''
+      tags:
+      - api
+    delete:
+      operationId: destroyJobs
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this jobs.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    Member:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        gender:
+          enum:
+          - M
+          - F
+          type: string
+        username:
+          type: string
+          maxLength: 100
+        age:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        introduction:
+          type: string
+          nullable: true
+          maxLength: 100
+        job:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            average_salary:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+            job_name:
+              type: string
+              maxLength: 20
+            is_holiday_on_weekend:
+              type: boolean
+            paid_holiday_count:
+              type: integer
+              maximum: 2147483647
+              minimum: -2147483648
+          required:
+          - average_salary
+          - job_name
+          - is_holiday_on_weekend
+          - paid_holiday_count
+      required:
+      - gender
+      - username
+      - age
+      - job
+    Job:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        average_salary:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        job_name:
+          type: string
+          maxLength: 20
+        is_holiday_on_weekend:
+          type: boolean
+        paid_holiday_count:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+      required:
+      - average_salary
+      - job_name
+      - is_holiday_on_weekend
+      - paid_holiday_count
