@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+# jwt認証の有効期限用
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -69,7 +71,17 @@ REST_FRAMEWORK = {
         'anon': '10/day',
         # Authenticated users
         'user': '50/day'
-    }
+    },
+    # jwtトークン認証
+    # 秘密鍵には設定ファイルのSECRET_KEYが使われる
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),  
+}
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
+    # JWT有効期限
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
 }
 
 TEMPLATES = [
