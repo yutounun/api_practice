@@ -23,7 +23,7 @@ class MemberViewSet(viewsets.ModelViewSet):
     queryset = Members.objects.all()
     serializer_class = MemberSerializer
     # このViewSetはログイン済みのaccess_tokenを持つuserしかたたけない
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     # 取得したクエリセットを念のためdjango.logとターミナルに出力
     logger = logging.getLogger('command')
@@ -46,4 +46,4 @@ class MemberViewSet(viewsets.ModelViewSet):
 class JobViewSet(viewsets.ModelViewSet):
     queryset = Jobs.objects.all()
     serializer_class = JobSerializer
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)

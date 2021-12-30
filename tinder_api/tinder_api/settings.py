@@ -76,7 +76,7 @@ REST_FRAMEWORK = {
         # Unauthenticated users
         'anon': '10/day',
         # Authenticated users
-        'user': '50/day'
+        'user': '100/day'
     },
     # jwtトークン認証
     # 秘密鍵には設定ファイルのSECRET_KEYが使われる
