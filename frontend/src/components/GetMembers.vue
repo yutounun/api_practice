@@ -1,22 +1,28 @@
 <template>
   <div>
-    <!-- Membersプロパティから -->
-    <div v-for="(member, key) in Members" :key="key">
-      <hr>
-      <p>{{ member.username }}</p>
-      <p>{{ member.gender }}</p>
-      <p>{{ member.introduction }}</p>
-      <p>{{ member.job }}</p>
-      <hr>
+    <!-- ログイン画面 -->
+    <div class='loginForm' v-if="!tokens.access">
+      <input type="text" placeholder="username" v-model="username">
+      <!-- scriptのpasswordプロパティに入力値が格納される -->
+      <input type="text" placeholder="password" v-model="password">
+      <!-- クリックするとloginメソッドを実行 -->
+      <button @click="login">login</button>
+      <!-- Membersプロパティから -->
+      <!-- scriptのuserプロパティに入力値が格納される -->
     </div>
-    <!-- scriptのuserプロパティに入力値が格納される -->
-    <input type="text" placeholder="username" v-model="username">
-    <!-- scriptのpasswordプロパティに入力値が格納される -->
-    <input type="text" placeholder="password" v-model="password">
-    <!-- クリックするとloginメソッドを実行 -->
-    <button @click="login">login</button><hr>
-    <!-- クリックするとgetInfoメソッドを実行 -->
-    <button @click="getInfo">メンバー情報を取得</button>
+    <!-- ログイン後画面 -->
+    <div v-if="tokens.access">
+      <div v-for="(member, key) in Members" :key="key">
+          <hr>
+          <p>{{ member.username }}</p>
+          <p>{{ member.gender }}</p>
+          <p>{{ member.introduction }}</p>
+          <p>{{ member.job }}</p>
+          <hr>
+        </div>
+      <!-- クリックするとgetInfoメソッドを実行 -->
+      <button @click="getInfo">メンバー情報を取得</button>
+    </div>
   </div>
 </template>
 
