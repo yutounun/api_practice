@@ -1,33 +1,49 @@
 <template>
-  <div>
-    <!-- ログイン画面 -->
-    <div class="loginForm" v-if="!tokens.access">
-      <!-- scriptのusernameプロパティに入力値が格納される -->
-      <v-text-field
-        label="username"
-        :rules="rules"
-        hide-details="auto"
-        v-model="username"
-      ></v-text-field>
-      <!-- scriptのpasswordプロパティに入力値が格納される -->
-      <v-text-field label="password" v-model="password"></v-text-field>
-      <!-- クリックするとloginメソッドを実行 -->
-      <v-btn color="pink lighten-1 white--text" elevation="2" @click="login">LOGIN</v-btn>
-      <!-- Membersプロパティから -->
-      <!-- scriptのuserプロパティに入力値が格納される -->
-    </div>
-    <!-- ログイン後画面 -->
-    <div v-if="tokens.access">
-      <v-btn  color="pink lighten-1 white--text" @click="getInfo" elevation="2">メンバー情報を取得</v-btn>
-      <v-data-table
-        :headers="headers"
-        :items="Members"
-        :items-per-page="5"
-        class="elevation-1"
-        v-show="showTable"
-      ></v-data-table>
-    </div>
-  </div>
+  <v-container>
+    <v-row>
+      <!-- ログイン画面 -->
+      <v-col col="4"></v-col>
+      <v-col col="4" class="loginPage" v-if="!tokens.access">
+        <div class="loginPage mt-10">
+          <!-- scriptのusernameプロパティに入力値が格納される -->
+          <v-text-field
+            label="username"
+            :rules="rules"
+            hide-details="auto"
+            v-model="username"
+          ></v-text-field>
+          <!-- scriptのpasswordプロパティに入力値が格納される -->
+          <v-text-field 
+            label="password"
+            v-model="password"
+            :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
+            :rules="[rules.required, rules.min]"
+            :type="showPass ? 'text' : 'password'"
+            name="input-10-1"
+            @click:append="showPass = !showPass"
+          ></v-text-field>
+        </div>
+        <!-- クリックするとloginメソッドを実行 -->
+        <v-btn depressed outlined class="pink--text" elevation="2" @click="login">LOGIN</v-btn>
+        <!-- Membersプロパティから -->
+        <!-- scriptのuserプロパティに入力値が格納される -->
+      </v-col>
+      <v-col col="4"></v-col>
+    </v-row>
+    <v-row justify="center">
+      <!-- ログイン後画面 -->
+      <div col="4" v-if="tokens.access">
+        <v-btn depressed outlined class="pink--text" @click="getInfo" elevation="2">メンバー情報を取得</v-btn>
+        <v-data-table
+          :headers="headers"
+          :items="Members"
+          :items-per-page="5"
+          class="elevation-1"
+          v-show="showTable"
+        ></v-data-table>
+      </div>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -53,7 +69,12 @@ export default {
       },
       username: "",
       password: "",
-      showTable: false
+      showTable: false,
+      showPass: false,
+      rules: {
+        required: value => !!value || 'Required.',
+        min: v => v.length >= 8 || 'Min 8 characters'
+      }
     };
   },
   methods: {
