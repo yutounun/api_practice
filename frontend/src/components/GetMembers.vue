@@ -33,7 +33,7 @@
     <v-row justify="center">
       <!-- ログイン後画面 -->
       <div col="4" v-if="tokens.access">
-        <v-btn depressed outlined class="pink--text" @click="getInfo" elevation="2">メンバー情報を取得</v-btn>
+        <v-btn depressed outlined class="pink--text mb-5" @click="getInfo" elevation="2">メンバー情報を取得</v-btn>
         <v-data-table
           :headers="headers"
           :items="Members"
@@ -52,15 +52,18 @@ export default {
     return {
       headers: [
         {
-          text: 'gender',
+          text: '性別',
           align: 'start',
           sortable: false,
           value: 'gender',
         },
-        { text: 'username', value: 'username' },
-        { text: 'age', value: 'age' },
-        { text: 'introduction', value: 'introduction' },
-        { text: 'job', value: 'job' },
+        { text: 'ユーザー名', value: 'username' },
+        { text: '年齢', value: 'age' },
+        { text: '自己紹介', value: 'introduction' },
+        { text: '職業', value: 'job.job_name' },
+        { text: '有給取得可能数', value: 'job.paid_holiday_count' },
+        { text: '平均収入', value: 'job.average_salary' },
+        { text: '休日休みか', value: 'job.is_holiday_on_weekend' },
       ],
       Members: [],
       tokens: {
