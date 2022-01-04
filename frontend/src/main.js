@@ -1,14 +1,16 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import axios from 'axios' //追記
-import VueAxios from 'vue-axios' //追記
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import axios from "axios"; //追記
+import VueAxios from "vue-axios"; //追記
+import vuetify from "./plugins/vuetify";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-Vue.use(VueAxios, axios) //追記
+Vue.use(VueAxios, axios); //追記
 
 new Vue({
   router,
-  render: h => h(App)
-}).$mount('#app')
+  vuetify,
+  render: (h) => h(App),
+}).$mount("#app");
