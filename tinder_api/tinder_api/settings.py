@@ -43,10 +43,16 @@ INSTALLED_APPS = [
     # appname
     'tinder',
     # framework for API
-    'rest_framework'
+    'rest_framework',
+    # CORS対策用のlib
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    # CORS用のMiddleWare
+    'corsheaders.middleware.CorsMiddleware',
+    # CORS用のMiddleWare
+    'django.middleware.common.CommonMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -70,7 +76,7 @@ REST_FRAMEWORK = {
         # Unauthenticated users
         'anon': '10/day',
         # Authenticated users
-        'user': '50/day'
+        'user': '100/day'
     },
     # jwtトークン認証
     # 秘密鍵には設定ファイルのSECRET_KEYが使われる
@@ -195,3 +201,8 @@ LOGGING = {
         },
     },
 }
+# VueからのXMLHttpRequestのアクセスがDRF側でブロックされないようにCORS設定をする
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8080',
+]
