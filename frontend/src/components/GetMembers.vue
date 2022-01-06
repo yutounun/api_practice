@@ -218,7 +218,7 @@ export default {
     // usernameとpasswordからjwt認証を行いaccess_tokenとrefresh_tokenを取得
     login: function () {
       // token取得のためのusernameとpasswordセット
-      const data = { username: 'yuto', password: 'Iloveakb48' };
+      const data = { username: this.username, password: this.password };
       // access_token&refresh_tokenを取得
       this.axios
         .post("http://127.0.0.1:8000/api-auth/jwt/", data)
@@ -227,8 +227,4 @@ export default {
     },
   },
 };
-
-
-// left tasks
-// ・入力値からpostを行う
 </script>
