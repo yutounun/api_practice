@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from django.shortcuts import get_object_or_404
 from .models import Members, Jobs
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
 class JobSerializer(serializers.ModelSerializer):
     class Meta:
@@ -23,3 +25,13 @@ class MemberSerializer(serializers.ModelSerializer):
         response = super().to_representation(instance)
         response['job'] = JobSerializer(instance.job).data
         return response
+
+class UserSerializer(serializers.ModelSerializer):
+    # passwordをハッシュ化する
+    def validate_password(self, value: str) -> str:
+        return make_password(value)
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'password']
+        extra_kwargs = {'password': {'write_only': True}}

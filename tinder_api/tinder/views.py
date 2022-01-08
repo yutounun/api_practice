@@ -1,6 +1,8 @@
 from django.http import response
 from django.shortcuts import render
 from .models import *
+from django.contrib.auth.models import User
+from .serializer import UserSerializer
 from rest_framework import views, status
 import django_filters
 from rest_framework.exceptions import NotFound
@@ -47,3 +49,7 @@ class JobViewSet(viewsets.ModelViewSet):
     queryset = Jobs.objects.all()
     serializer_class = JobSerializer
     permission_classes = (IsAuthenticated,)
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
