@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     # CORS対策用のlib
     'corsheaders',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
