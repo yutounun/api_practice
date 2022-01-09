@@ -8,7 +8,6 @@
           <!-- scriptのusernameプロパティに入力値が格納される -->
           <v-text-field
             label="username"
-            :rules="rules"
             hide-details="auto"
             v-model="username"
           ></v-text-field>
@@ -24,7 +23,8 @@
           ></v-text-field>
         </div>
         <!-- クリックするとloginメソッドを実行 -->
-        <v-btn depressed outlined class="pink--text" elevation="2" @click="login">LOGIN</v-btn>
+        <v-btn depressed outlined class="mr-15 pink--text" elevation="2" @click="login">SIGN IN</v-btn>
+        <a @click="signup" class='ml-15 pink--text'>SIGN UPはこちら>>></a>
         <!-- Membersプロパティから -->
         <!-- scriptのuserプロパティに入力値が格納される -->
       </v-col>
@@ -225,6 +225,12 @@ export default {
         // レスポンスを一旦tokensプロパティに格納
         .then((response) => (this.tokens = response.data));
     },
+    signup: function() {
+      // signupページに遷移
+      this.$router.push({
+        name: 'SignUp',
+      })
+    }
   },
 };
 </script>

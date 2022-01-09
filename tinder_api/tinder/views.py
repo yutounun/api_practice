@@ -11,7 +11,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 
 from .models import Members
-from .serializer import MemberSerializer, JobSerializer
+from django.contrib.auth.models import User
+from .serializer import MemberSerializer, JobSerializer, UserSerializer
 
 # ログ処理
 import logging
@@ -47,3 +48,7 @@ class JobViewSet(viewsets.ModelViewSet):
     queryset = Jobs.objects.all()
     serializer_class = JobSerializer
     permission_classes = (IsAuthenticated,)
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

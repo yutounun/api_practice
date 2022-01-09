@@ -12,5 +12,7 @@ router = routers.SimpleRouter()
 router.register(r'member', MemberViewSet)
 # GETのname = url+'s-list'
 router.register(r'job', JobViewSet)
+# Userデータの登録
+router.register(r'regist', UserViewSet)
 
 urlpatterns = router.urls
