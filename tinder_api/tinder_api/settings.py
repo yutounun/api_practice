@@ -15,16 +15,14 @@ import os
 # jwt認証の有効期限用
 from datetime import timedelta
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i$ex)*)v(-gpbjuizn^@ifflu48z*0ao^xtbj2apv+#d-=5i68'
-
+SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -122,10 +120,12 @@ DATABASES = {
     
     # MySQL.ver
     'default': {
-        'ENGINE': 'django.db.backends.mysql', # 変更
-        'NAME': 'tinder', # プロジェクトで使用するデータベース名
-        'USER': 'root', # パソコンにインストールしたMySQLのユーザー名
-        'PASSWORD': 'Iloveakb48*', # 同上。そのパスワード
+        'ENGINE': os.environ['POSTGRES_ENGINE'],
+        'NAME': os.environ['POSTGRES_NAME'],
+        'USER': os.environ['POSTGRES_USER'],
+        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+        'HOST': os.environ['POSTGRES_HOST'],
+        'PORT': os.environ['POSTGRES_PORT'],
     }
 }
 
